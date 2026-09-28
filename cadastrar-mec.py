@@ -1,4 +1,5 @@
 from conexão import conectar
+
 def cadastrar_mecanico():
 
     nome = input("Nome: ")
