@@ -1,15 +1,4 @@
-import mysql.connector
-
-def conectar():
-    banco = mysql.connector.connect(
-        host="localhost"
-        user="root"
-        passaword="Senac2026"
-        database="oficina_carros"
-    )
-    return banco
-
-from conexao import connectar 
+from conexao import connectar
 
 def cadastrar_cliente():
     print("\n-----CADASTRAR CLIENTE----")
@@ -23,7 +12,7 @@ def cadastrar_cliente():
     cursor = banco.cursor()
 
     sql = """
-    INSERT INT clientes (nome, cpf, telefone, email)
+    INSERT INTO clientes (nome, cpf, telefone, email)
     VALUES (%s, %s, %s, %s)
     """
 
@@ -106,7 +95,7 @@ def excluir_cliente():
     WHERE id_cliente = %s
     """
 
-    cursor.eexecute( sql, (id_cliente,))
+    cursor.execute( sql, (id_cliente,))
 
     banco.commit()
 
