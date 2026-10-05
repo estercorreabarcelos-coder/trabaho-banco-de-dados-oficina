@@ -1,4 +1,4 @@
-from conexao import connectar
+from conexao import conectar
 
 def cadastrar_cliente():
     print("\n-----CADASTRAR CLIENTE----")
@@ -8,7 +8,7 @@ def cadastrar_cliente():
     telefone = input("Telefone: ")
     email = input("Email: ")
 
-    banco = connectar()
+    banco = conectar()
     cursor = banco.cursor()
 
     sql = """
@@ -25,8 +25,8 @@ def cadastrar_cliente():
     cursor.close()
     banco.close()
 
-def listar_clientes():
-    print("\n ---- LISTA DE CLIENTES----")
+def listar_cliente():
+    print("\n------ LSITA DE CLIENTES------")
 
     banco = conectar()
     cursor = banco.cursor()
@@ -104,7 +104,7 @@ def excluir_cliente():
     cursor.close()
     banco.close()
 
-def burcar_cliente():
+def buscar_cliente():
     print("\n ---- BUSCAR CLIENTE-----")
 
     nome = input("Digite uma parte do nome: ")

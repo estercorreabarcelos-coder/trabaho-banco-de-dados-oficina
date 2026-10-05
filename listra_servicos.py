@@ -1,4 +1,4 @@
-from conexão import conectar
+from conexao import conectar
 
 def listar_servicos():
     conexao = conectar()

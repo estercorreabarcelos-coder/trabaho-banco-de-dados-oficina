@@ -1,6 +1,6 @@
 from cliente import (
    cadastrar_cliente,
-   listar_clientes,
+   listar_cliente,
    atualizar_cliente,
    excluir_cliente,
    buscar_cliente
@@ -30,7 +30,7 @@ while True:
    if opcao == "1":
        cadastrar_cliente()
    elif opcao == "2":
-       listar_clientes()
+       listar_cliente()
    elif opcao == "3":
        atualizar_cliente()
    elif opcao == "4":

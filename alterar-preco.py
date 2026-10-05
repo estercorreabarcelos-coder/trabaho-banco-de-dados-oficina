@@ -1,4 +1,4 @@
-from conexão import conectar 
+from conexao import conectar 
 
 def alterar_preço():
     id_serviço = input("Digite o ID do serviço: ")
@@ -21,7 +21,12 @@ def alterar_preço():
         cursor.execute(sql,valores)
         conexao.commit()
 
-        if cursor.rowcount >0:
-            print("Preço atualizado com sucesso!!")
+        if cursor.rowcount > 0:
+            print("Preço atualizado com sucesso!")
         else:
-            print
+            print("Serviço não encontrado")
+    except Exception as erro:
+        print("Erro", erro)
+    finally:
+        cursor.close()
+        conexao.close()
