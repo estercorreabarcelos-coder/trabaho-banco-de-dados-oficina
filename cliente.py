@@ -1,6 +1,5 @@
 from conexao import conectar
 
-
 def cadastrar_cliente():
     print("\n===== CADASTRAR CLIENTE =====")
 
@@ -29,9 +28,9 @@ def cadastrar_cliente():
         cursor.close()
         banco.close()
 
+def listar_cliente():
+    print("\n------ LSITA DE CLIENTES------")
 
-def listar_clientes():
-    print("\n===== LISTA DE CLIENTES =====")
 
     banco = conectar()
     cursor = banco.cursor()

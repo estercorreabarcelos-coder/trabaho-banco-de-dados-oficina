@@ -1,4 +1,4 @@
-from conexão import conectar
+from conexao import conectar
 
 def atualizar_mecanicos():
     id_mecanico = input("ID do mêcanico: ")
