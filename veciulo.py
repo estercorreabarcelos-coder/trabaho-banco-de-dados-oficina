@@ -47,20 +47,20 @@ def listar_veiculos():
     banco.close()
 
 
-def busar_veiculos_clientes():
-    print("\n -----VEÍCULO DO CLIENTE-----")
+def buscar_veiculos_clientes():
+    print("\n===== VEÍCULO DO CLIENTE =====")
 
-    id_cliene = input("Digite o ID do cliente: ")
+    id_cliente = input("Digite o ID do cliente: ")
 
     banco = conectar()
     cursor = banco.cursor()
 
     sql = """
-    SELECT 
-        clientes.nome
-        veiculos.placa
-        veiculos.marca
-        veiculos.modelo
+    SELECT
+        clientes.nome,
+        veiculos.placa,
+        veiculos.marca,
+        veiculos.modelo,
         veiculos.ano
     FROM clientes
     INNER JOIN veiculos
@@ -74,7 +74,6 @@ def busar_veiculos_clientes():
 
     for veiculo in veiculos:
         print(veiculo)
-
 
     cursor.close()
     banco.close()

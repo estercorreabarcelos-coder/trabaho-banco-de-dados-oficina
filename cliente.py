@@ -1,15 +1,15 @@
 import mysql.connector
+from conexao import conectar
 
 def conectar():
     banco = mysql.connector.connect(
-        host="localhost"
-        user="root"
-        passaword="Senac2026"
-        database="oficina_carros"
+        host="localhost",
+        user="root",
+        password="SUA_SENHA",
+        database="oficina"
     )
-    return banco
 
-from conexao import connectar 
+    return banco
 
 def cadastrar_cliente():
     print("\n-----CADASTRAR CLIENTE----")
@@ -19,7 +19,7 @@ def cadastrar_cliente():
     telefone = input("Telefone: ")
     email = input("Email: ")
 
-    banco = connectar()
+    banco = connect()
     cursor = banco.cursor()
 
     sql = """

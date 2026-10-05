@@ -1,4 +1,4 @@
-from conexão import conectar 
+from conexao import conectar 
 
 def cadastrar_servicos():
     nome = input("Nome do serviço: ")
