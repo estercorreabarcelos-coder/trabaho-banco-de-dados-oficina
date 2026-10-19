@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 CREATE DATABASE oficina;
 USE oficina;
 
@@ -23,6 +24,52 @@ CREATE TABLE veiculos (
         REFERENCES clientes(id_cliente)
 );
 
+=======
+DROP DATABASE IF EXISTS oficina_carros;
+
+CREATE DATABASE oficina_carros;
+
+USE oficina_carros;
+
+
+ALTER TABLE clientes
+MODIFY COLUMN data_cadastro DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP;
+
+USE oficina_carros;
+DESCRIBE clientes;
+
+SHOW TABLES;
+
+-- =========================================================
+-- 1. TABELAS
+-- =========================================================
+
+CREATE TABLE clientes (
+    id_cliente INT AUTO_INCREMENT PRIMARY KEY,
+    telefone VARCHAR(20),
+    nome VARCHAR(100) NOT NULL,
+    cpf VARCHAR(11) NOT NULL UNIQUE,
+    email VARCHAR(100) UNIQUE,
+    data_cadastro DATE NOT NULL
+);
+
+
+CREATE TABLE veiculos (
+    id_veiculo INT AUTO_INCREMENT PRIMARY KEY,
+    id_cliente INT NOT NULL,
+    placa VARCHAR(7) NOT NULL UNIQUE,
+    marca VARCHAR(50) NOT NULL,
+    modelo VARCHAR(50) NOT NULL,
+    ano INT NOT NULL,
+
+    FOREIGN KEY (id_cliente)
+        REFERENCES clientes(id_cliente),
+
+    CHECK (ano BETWEEN 1950 AND 2100)
+);
+
+
+>>>>>>> 61479939a836d72350c2c5917868083c873bec77
 CREATE TABLE mecanicos (
     id_mecanico INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
@@ -32,6 +79,10 @@ CREATE TABLE mecanicos (
     status VARCHAR(20) NOT NULL DEFAULT 'ATIVO'
 );
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 61479939a836d72350c2c5917868083c873bec77
 CREATE TABLE servicos (
     id_servico INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100) NOT NULL UNIQUE,
@@ -41,6 +92,10 @@ CREATE TABLE servicos (
     status VARCHAR(20) NOT NULL DEFAULT 'ATIVO'
 );
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 61479939a836d72350c2c5917868083c873bec77
 CREATE TABLE ordens_servico (
     id_ordem INT AUTO_INCREMENT PRIMARY KEY,
     id_cliente INT NOT NULL,
@@ -51,11 +106,25 @@ CREATE TABLE ordens_servico (
     status VARCHAR(30) NOT NULL DEFAULT 'ABERTA',
     observacoes VARCHAR(255),
 
+<<<<<<< HEAD
     FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente),
     FOREIGN KEY (id_veiculo) REFERENCES veiculos(id_veiculo),
     FOREIGN KEY (id_mecanico) REFERENCES mecanicos(id_mecanico)
 );
 
+=======
+    FOREIGN KEY (id_cliente)
+        REFERENCES clientes(id_cliente),
+
+    FOREIGN KEY (id_veiculo)
+        REFERENCES veiculos(id_veiculo),
+
+    FOREIGN KEY (id_mecanico)
+        REFERENCES mecanicos(id_mecanico)
+);
+
+
+>>>>>>> 61479939a836d72350c2c5917868083c873bec77
 CREATE TABLE itens_servico (
     id_item INT AUTO_INCREMENT PRIMARY KEY,
     id_ordem INT NOT NULL,
@@ -63,10 +132,21 @@ CREATE TABLE itens_servico (
     quantidade INT NOT NULL DEFAULT 1,
     preco_unitario DECIMAL(10,2) NOT NULL,
 
+<<<<<<< HEAD
     FOREIGN KEY (id_ordem) REFERENCES ordens_servico(id_ordem),
     FOREIGN KEY (id_servico) REFERENCES servicos(id_servico)
 );
 
+=======
+    FOREIGN KEY (id_ordem)
+        REFERENCES ordens_servico(id_ordem),
+
+    FOREIGN KEY (id_servico)
+        REFERENCES servicos(id_servico)
+);
+
+
+>>>>>>> 61479939a836d72350c2c5917868083c873bec77
 CREATE TABLE historico (
     id_historico INT AUTO_INCREMENT PRIMARY KEY,
     id_ordem INT NOT NULL,
@@ -74,12 +154,51 @@ CREATE TABLE historico (
     descricao VARCHAR(255) NOT NULL,
     data_alteracao DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
+<<<<<<< HEAD
     FOREIGN KEY (id_ordem) REFERENCES ordens_servico(id_ordem)
 );
 
 
 -- 2. DADOS
 INSERT INTO clientes (nome, cpf, email, data_cadastro) VALUES
+=======
+    FOREIGN KEY (id_ordem)
+        REFERENCES ordens_servico(id_ordem)
+);
+
+
+CREATE TABLE historico_precos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_servico INT NOT NULL,
+    preco_anterior DECIMAL(10,2) NOT NULL,
+    preco_novo DECIMAL(10,2) NOT NULL,
+    data_alteracao DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (id_servico)
+        REFERENCES servicos(id_servico)
+);
+
+
+CREATE TABLE historico_status_ordem (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_ordem INT NOT NULL,
+    status_anterior VARCHAR(30) NOT NULL,
+    novo_status VARCHAR(30) NOT NULL,
+    data_alteracao DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (id_ordem)
+        REFERENCES ordens_servico(id_ordem)
+);
+
+
+-- =========================================================
+-- 2. DADOS
+-- =========================================================
+
+INSERT INTO clientes
+(nome, cpf, email, data_cadastro)
+VALUES
+>>>>>>> 61479939a836d72350c2c5917868083c873bec77
 ('João da Silva','11111111111','joao@email.com','2026-01-10'),
 ('Maria Souza','22222222222','maria@email.com','2026-01-12'),
 ('Carlos Oliveira','33333333333','carlos@email.com','2026-01-15'),
@@ -92,7 +211,13 @@ INSERT INTO clientes (nome, cpf, email, data_cadastro) VALUES
 ('Juliana Lima','12345678900','juliana@email.com','2026-02-03');
 
 
+<<<<<<< HEAD
 INSERT INTO veiculos (id_cliente, placa, marca, modelo, ano) VALUES
+=======
+INSERT INTO veiculos
+(id_cliente, placa, marca, modelo, ano)
+VALUES
+>>>>>>> 61479939a836d72350c2c5917868083c873bec77
 (1,'ABC1D23','Volkswagen','Gol',2018),
 (2,'DEF2E34','Chevrolet','Onix',2020),
 (3,'GHI3F45','Fiat','Uno',2017),
@@ -108,7 +233,12 @@ INSERT INTO veiculos (id_cliente, placa, marca, modelo, ano) VALUES
 
 
 INSERT INTO mecanicos
+<<<<<<< HEAD
 (nome, cpf, especialidade, data_contratacao) VALUES
+=======
+(nome, cpf, especialidade, data_contratacao)
+VALUES
+>>>>>>> 61479939a836d72350c2c5917868083c873bec77
 ('Carlos Mendes','11111111111','Motor','2023-02-10'),
 ('Joao Silva','22222222222','Freios','2022-08-15'),
 ('Marcos Oliveira','33333333333','Suspensao','2024-01-20'),
@@ -117,7 +247,12 @@ INSERT INTO mecanicos
 
 
 INSERT INTO servicos
+<<<<<<< HEAD
 (nome, descricao, preco, tempo_estimado) VALUES
+=======
+(nome, descricao, preco, tempo_estimado)
+VALUES
+>>>>>>> 61479939a836d72350c2c5917868083c873bec77
 ('Troca de oleo','Troca do oleo do motor',150.00,60),
 ('Troca de pastilhas','Troca das pastilhas de freio',280.00,90),
 ('Alinhamento','Alinhamento das rodas',120.00,60),
@@ -131,7 +266,12 @@ INSERT INTO servicos
 
 
 INSERT INTO ordens_servico
+<<<<<<< HEAD
 (id_cliente,id_veiculo,id_mecanico,data_abertura,status,observacoes) VALUES
+=======
+(id_cliente, id_veiculo, id_mecanico, data_abertura, status, observacoes)
+VALUES
+>>>>>>> 61479939a836d72350c2c5917868083c873bec77
 (1,1,1,'2026-03-01 08:00:00','ABERTA','Revisao geral'),
 (2,2,2,'2026-03-02 09:00:00','EM_ANDAMENTO','Problema no freio'),
 (3,3,3,'2026-03-03 10:00:00','CONCLUIDA','Problema na suspensao'),
@@ -145,7 +285,12 @@ INSERT INTO ordens_servico
 
 
 INSERT INTO itens_servico
+<<<<<<< HEAD
 (id_ordem,id_servico,quantidade,preco_unitario) VALUES
+=======
+(id_ordem, id_servico, quantidade, preco_unitario)
+VALUES
+>>>>>>> 61479939a836d72350c2c5917868083c873bec77
 (1,1,1,150.00),
 (1,3,1,120.00),
 (2,2,1,280.00),
@@ -161,6 +306,7 @@ INSERT INTO itens_servico
 (10,10,1,700.00);
 
 
+<<<<<<< HEAD
 
 -- 3. CONSULTAS
 -- WHERE
@@ -212,13 +358,115 @@ FROM ordens_servico
 GROUP BY status;
 
 SELECT status, COUNT(*) AS quantidade
+=======
+-- =========================================================
+-- 3. CONSULTAS
+-- =========================================================
+
+-- WHERE
+
+SELECT *
+FROM servicos
+WHERE preco > 500;
+
+
+-- ORDER BY + LIMIT
+
+SELECT *
+FROM servicos
+ORDER BY preco DESC
+LIMIT 5;
+
+
+-- LIKE
+
+SELECT *
+FROM clientes
+WHERE nome LIKE '%Silva%';
+
+
+-- BETWEEN
+
+SELECT *
+FROM servicos
+WHERE preco BETWEEN 100 AND 500;
+
+
+-- IN
+
+SELECT *
+FROM ordens_servico
+WHERE status IN ('ABERTA','EM_ANDAMENTO');
+
+
+-- AND
+
+SELECT *
+FROM servicos
+WHERE preco > 200
+AND status = 'ATIVO';
+
+
+-- OR
+
+SELECT *
+FROM ordens_servico
+WHERE status = 'ABERTA'
+OR status = 'EM_ANDAMENTO';
+
+
+-- =========================================================
+-- 4. FUNÇÕES DE AGREGAÇÃO
+-- =========================================================
+
+SELECT COUNT(*) AS total_clientes
+FROM clientes;
+
+
+SELECT SUM(preco) AS soma_servicos
+FROM servicos;
+
+
+SELECT AVG(preco) AS preco_medio
+FROM servicos;
+
+
+SELECT MIN(preco) AS menor_preco
+FROM servicos;
+
+
+SELECT MAX(preco) AS maior_preco
+FROM servicos;
+
+
+-- =========================================================
+-- 5. GROUP BY + HAVING
+-- =========================================================
+
+SELECT
+    status,
+    COUNT(*) AS quantidade
+FROM ordens_servico
+GROUP BY status;
+
+
+SELECT
+    status,
+    COUNT(*) AS quantidade
+>>>>>>> 61479939a836d72350c2c5917868083c873bec77
 FROM ordens_servico
 GROUP BY status
 HAVING COUNT(*) > 2;
 
 
+<<<<<<< HEAD
 -- 6. JOINS
 
+=======
+-- =========================================================
+-- 6. JOINS
+-- =========================================================
+>>>>>>> 61479939a836d72350c2c5917868083c873bec77
 
 SELECT
     c.nome AS cliente,
@@ -226,7 +474,11 @@ SELECT
     v.placa
 FROM clientes c
 INNER JOIN veiculos v
+<<<<<<< HEAD
 ON c.id_cliente = v.id_cliente;
+=======
+    ON c.id_cliente = v.id_cliente;
+>>>>>>> 61479939a836d72350c2c5917868083c873bec77
 
 
 SELECT
@@ -236,9 +488,18 @@ SELECT
     m.nome AS mecanico,
     os.status
 FROM ordens_servico os
+<<<<<<< HEAD
 INNER JOIN clientes c ON os.id_cliente = c.id_cliente
 INNER JOIN veiculos v ON os.id_veiculo = v.id_veiculo
 INNER JOIN mecanicos m ON os.id_mecanico = m.id_mecanico;
+=======
+INNER JOIN clientes c
+    ON os.id_cliente = c.id_cliente
+INNER JOIN veiculos v
+    ON os.id_veiculo = v.id_veiculo
+INNER JOIN mecanicos m
+    ON os.id_mecanico = m.id_mecanico;
+>>>>>>> 61479939a836d72350c2c5917868083c873bec77
 
 
 SELECT
@@ -248,6 +509,7 @@ SELECT
     i.preco_unitario,
     i.quantidade * i.preco_unitario AS total
 FROM itens_servico i
+<<<<<<< HEAD
 INNER JOIN ordens_servico os ON i.id_ordem = os.id_ordem
 INNER JOIN servicos s ON i.id_servico = s.id_servico;
 
@@ -255,22 +517,129 @@ INNER JOIN servicos s ON i.id_servico = s.id_servico;
 -- 7. SUBCONSULTAS
 -- Serviços acima da média
 SELECT nome, preco
+=======
+INNER JOIN ordens_servico os
+    ON i.id_ordem = os.id_ordem
+INNER JOIN servicos s
+    ON i.id_servico = s.id_servico;
+
+
+-- =========================================================
+-- CONSULTAS DE CLIENTES E VEÍCULOS
+-- =========================================================
+
+SELECT *
+FROM clientes
+ORDER BY nome;
+
+
+SELECT *
+FROM clientes
+WHERE nome LIKE 'A%'
+ORDER BY nome;
+
+
+SELECT *
+FROM clientes
+WHERE nome LIKE '%a%'
+ORDER BY nome;
+
+
+SELECT
+    c.nome,
+    v.placa,
+    v.marca,
+    v.modelo,
+    v.ano
+FROM clientes c
+INNER JOIN veiculos v
+    ON c.id_cliente = v.id_cliente
+WHERE c.id_cliente = 1;
+
+
+SELECT *
+FROM veiculos
+WHERE marca = 'Toyota'
+OR marca = 'Volkswagen'
+ORDER BY marca;
+
+
+SELECT *
+FROM veiculos
+WHERE ano BETWEEN 2019 AND 2022
+ORDER BY ano;
+
+
+SELECT *
+FROM veiculos
+ORDER BY ano DESC
+LIMIT 5;
+
+
+SELECT
+    c.nome AS cliente,
+    COUNT(v.id_veiculo) AS quantidade_veiculos
+FROM clientes c
+LEFT JOIN veiculos v
+    ON c.id_cliente = v.id_cliente
+GROUP BY c.id_cliente, c.nome
+ORDER BY quantidade_veiculos DESC;
+
+
+SELECT
+    c.nome AS cliente,
+    COUNT(v.id_veiculo) AS quantidade_veiculos
+FROM clientes c
+INNER JOIN veiculos v
+    ON c.id_cliente = v.id_cliente
+GROUP BY c.id_cliente, c.nome
+HAVING COUNT(v.id_veiculo) > 1
+ORDER BY quantidade_veiculos DESC;
+
+
+-- =========================================================
+-- 7. SUBCONSULTAS
+-- =========================================================
+
+-- Serviços acima da média
+
+SELECT
+    nome,
+    preco
+>>>>>>> 61479939a836d72350c2c5917868083c873bec77
 FROM servicos
 WHERE preco > (
     SELECT AVG(preco)
     FROM servicos
 );
 
+<<<<<<< HEAD
 -- Mecânicos que possuem ordens
 SELECT nome
+=======
+
+-- Mecânicos que possuem ordens
+
+SELECT
+    nome
+>>>>>>> 61479939a836d72350c2c5917868083c873bec77
 FROM mecanicos
 WHERE id_mecanico IN (
     SELECT id_mecanico
     FROM ordens_servico
 );
 
+<<<<<<< HEAD
 -- Veículos que possuem ordens
 SELECT placa, modelo
+=======
+
+-- Veículos que possuem ordens
+
+SELECT
+    placa,
+    modelo
+>>>>>>> 61479939a836d72350c2c5917868083c873bec77
 FROM veiculos
 WHERE id_veiculo IN (
     SELECT id_veiculo
@@ -278,20 +647,72 @@ WHERE id_veiculo IN (
 );
 
 
+<<<<<<< HEAD
 -- 8. PROCEDURES
 
 DELIMITER $$
 
+=======
+-- =========================================================
+-- SUBCONSULTAS ADICIONAIS
+-- =========================================================
+
+SELECT
+    nome,
+    preco
+FROM servicos
+WHERE preco = (
+    SELECT MAX(preco)
+    FROM servicos
+);
+
+
+SELECT
+    nome
+FROM clientes
+WHERE id_cliente IN (
+    SELECT id_cliente
+    FROM veiculos
+);
+
+
+-- =========================================================
+-- 8. PROCEDURES
+-- =========================================================
+
+DELIMITER $$
+
+
+>>>>>>> 61479939a836d72350c2c5917868083c873bec77
 CREATE PROCEDURE cadastrar_cliente(
     IN p_nome VARCHAR(100),
     IN p_cpf VARCHAR(11),
     IN p_email VARCHAR(100)
 )
 BEGIN
+<<<<<<< HEAD
     INSERT INTO clientes
     (nome,cpf,email,data_cadastro)
     VALUES
     (p_nome,p_cpf,p_email,CURDATE());
+=======
+
+    INSERT INTO clientes
+    (
+        nome,
+        cpf,
+        email,
+        data_cadastro
+    )
+    VALUES
+    (
+        p_nome,
+        p_cpf,
+        p_email,
+        CURDATE()
+    );
+
+>>>>>>> 61479939a836d72350c2c5917868083c873bec77
 END $$
 
 
@@ -302,10 +723,29 @@ CREATE PROCEDURE cadastrar_servico(
     IN p_tempo INT
 )
 BEGIN
+<<<<<<< HEAD
     INSERT INTO servicos
     (nome,descricao,preco,tempo_estimado)
     VALUES
     (p_nome,p_descricao,p_preco,p_tempo);
+=======
+
+    INSERT INTO servicos
+    (
+        nome,
+        descricao,
+        preco,
+        tempo_estimado
+    )
+    VALUES
+    (
+        p_nome,
+        p_descricao,
+        p_preco,
+        p_tempo
+    );
+
+>>>>>>> 61479939a836d72350c2c5917868083c873bec77
 END $$
 
 
@@ -314,14 +754,26 @@ CREATE PROCEDURE alterar_preco(
     IN p_preco DECIMAL(10,2)
 )
 BEGIN
+<<<<<<< HEAD
     UPDATE servicos
     SET preco = p_preco
     WHERE id_servico = p_id;
+=======
+
+    UPDATE servicos
+    SET preco = p_preco
+    WHERE id_servico = p_id;
+
+>>>>>>> 61479939a836d72350c2c5917868083c873bec77
 END $$
 
 
 CREATE PROCEDURE listar_ordens()
 BEGIN
+<<<<<<< HEAD
+=======
+
+>>>>>>> 61479939a836d72350c2c5917868083c873bec77
     SELECT
         os.id_ordem,
         c.nome AS cliente,
@@ -329,6 +781,7 @@ BEGIN
         m.nome AS mecanico,
         os.status
     FROM ordens_servico os
+<<<<<<< HEAD
     INNER JOIN clientes c ON os.id_cliente = c.id_cliente
     INNER JOIN veiculos v ON os.id_veiculo = v.id_veiculo
     INNER JOIN mecanicos m ON os.id_mecanico = m.id_mecanico;
@@ -340,14 +793,104 @@ DELIMITER ;
 -- 9. TRIGGERS
 DELIMITER $$
 
+=======
+    INNER JOIN clientes c
+        ON os.id_cliente = c.id_cliente
+    INNER JOIN veiculos v
+        ON os.id_veiculo = v.id_veiculo
+    INNER JOIN mecanicos m
+        ON os.id_mecanico = m.id_mecanico;
+
+END $$
+
+
+-- Procedure para cadastrar veículo
+
+CREATE PROCEDURE cadastrar_veiculo(
+    IN p_id_cliente INT,
+    IN p_marca VARCHAR(50),
+    IN p_modelo VARCHAR(50),
+    IN p_placa VARCHAR(10),
+    IN p_ano INT
+)
+BEGIN
+
+    IF NOT EXISTS (
+        SELECT 1
+        FROM clientes
+        WHERE id_cliente = p_id_cliente
+    ) THEN
+
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Cliente não encontrado';
+
+    END IF;
+
+
+    IF p_ano < 1900 OR p_ano > 2100 THEN
+
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Ano do veículo inválido';
+
+    END IF;
+
+
+    INSERT INTO veiculos
+    (
+        id_cliente,
+        marca,
+        modelo,
+        placa,
+        ano
+    )
+    VALUES
+    (
+        p_id_cliente,
+        p_marca,
+        p_modelo,
+        p_placa,
+        p_ano
+    );
+
+END $$
+
+
+DELIMITER ;
+
+
+-- =========================================================
+-- 9. TRIGGERS
+-- =========================================================
+
+DELIMITER $$
+
+
+>>>>>>> 61479939a836d72350c2c5917868083c873bec77
 CREATE TRIGGER registrar_nova_ordem
 AFTER INSERT ON ordens_servico
 FOR EACH ROW
 BEGIN
+<<<<<<< HEAD
     INSERT INTO historico
     (id_ordem,acao,descricao)
     VALUES
     (NEW.id_ordem,'CRIACAO','Nova ordem de servico criada');
+=======
+
+    INSERT INTO historico
+    (
+        id_ordem,
+        acao,
+        descricao
+    )
+    VALUES
+    (
+        NEW.id_ordem,
+        'CRIACAO',
+        'Nova ordem de servico criada'
+    );
+
+>>>>>>> 61479939a836d72350c2c5917868083c873bec77
 END $$
 
 
@@ -355,17 +898,42 @@ CREATE TRIGGER registrar_status
 AFTER UPDATE ON ordens_servico
 FOR EACH ROW
 BEGIN
+<<<<<<< HEAD
     IF OLD.status <> NEW.status THEN
         INSERT INTO historico
         (id_ordem,acao,descricao)
+=======
+
+    IF OLD.status <> NEW.status THEN
+
+        INSERT INTO historico
+        (
+            id_ordem,
+            acao,
+            descricao
+        )
+>>>>>>> 61479939a836d72350c2c5917868083c873bec77
         VALUES
         (
             NEW.id_ordem,
             'ALTERACAO',
+<<<<<<< HEAD
             CONCAT('Status alterado de ',
                    OLD.status,' para ',NEW.status)
         );
     END IF;
+=======
+            CONCAT(
+                'Status alterado de ',
+                OLD.status,
+                ' para ',
+                NEW.status
+            )
+        );
+
+    END IF;
+
+>>>>>>> 61479939a836d72350c2c5917868083c873bec77
 END $$
 
 
@@ -373,6 +941,7 @@ CREATE TRIGGER registrar_servico
 AFTER INSERT ON itens_servico
 FOR EACH ROW
 BEGIN
+<<<<<<< HEAD
     INSERT INTO historico
     (id_ordem,acao,descricao)
     VALUES
@@ -384,12 +953,71 @@ DELIMITER ;
 
 
 -- 10. TESTES
+=======
+
+    INSERT INTO historico
+    (
+        id_ordem,
+        acao,
+        descricao
+    )
+    VALUES
+    (
+        NEW.id_ordem,
+        'SERVICO',
+        'Servico adicionado a ordem'
+    );
+
+END $$
+
+
+-- Trigger para histórico de alteração de preço
+
+CREATE TRIGGER registrar_alteracao_preco
+AFTER UPDATE ON servicos
+FOR EACH ROW
+BEGIN
+
+    IF OLD.preco <> NEW.preco THEN
+
+        INSERT INTO historico_precos
+        (
+            id_servico,
+            preco_anterior,
+            preco_novo,
+            data_alteracao
+        )
+        VALUES
+        (
+            OLD.id_servico,
+            OLD.preco,
+            NEW.preco,
+            NOW()
+        );
+
+    END IF;
+
+END $$
+
+
+DELIMITER ;
+
+
+-- =========================================================
+-- 10. TESTES
+-- =========================================================
+
+>>>>>>> 61479939a836d72350c2c5917868083c873bec77
 CALL cadastrar_cliente(
     'Cliente Teste',
     '98765432100',
     'teste@email.com'
 );
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 61479939a836d72350c2c5917868083c873bec77
 CALL cadastrar_servico(
     'Troca de filtro',
     'Troca do filtro de ar',
@@ -397,20 +1025,54 @@ CALL cadastrar_servico(
     30
 );
 
+<<<<<<< HEAD
 CALL alterar_preco(1,160.00);
 
+=======
+
+CALL alterar_preco(1,160.00);
+
+
+>>>>>>> 61479939a836d72350c2c5917868083c873bec77
 CALL listar_ordens();
 
 
 -- Teste do trigger
+<<<<<<< HEAD
+=======
+
+>>>>>>> 61479939a836d72350c2c5917868083c873bec77
 UPDATE ordens_servico
 SET status = 'CONCLUIDA'
 WHERE id_ordem = 1;
 
+<<<<<<< HEAD
 SELECT * FROM historico;
 
 
 -- Valor total de cada ordem
+=======
+
+SELECT *
+FROM historico;
+
+
+-- Teste do histórico de preço
+
+UPDATE servicos
+SET preco = 700.00
+WHERE id_servico = 1;
+
+
+SELECT *
+FROM historico_precos;
+
+
+-- =========================================================
+-- VALOR TOTAL DE CADA ORDEM
+-- =========================================================
+
+>>>>>>> 61479939a836d72350c2c5917868083c873bec77
 SELECT
     os.id_ordem,
     c.nome AS cliente,
@@ -421,4 +1083,126 @@ INNER JOIN clientes c
 INNER JOIN itens_servico i
     ON os.id_ordem = i.id_ordem
 GROUP BY os.id_ordem, c.nome
+<<<<<<< HEAD
 ORDER BY valor_total DESC;
+=======
+ORDER BY valor_total DESC;
+
+
+-- =========================================================
+-- TESTES DE INTEGRIDADE
+-- =========================================================
+
+-- Cliente válido
+
+INSERT INTO clientes
+(
+    nome,
+    cpf,
+    telefone
+)
+VALUES
+(
+    'Cliente Teste 2',
+    '22233344455',
+    '48988887777'
+);
+
+
+-- Veículo com cliente inexistente
+-- Este comando deve apresentar erro de FOREIGN KEY
+
+INSERT INTO veiculos
+(
+    id_cliente,
+    marca,
+    modelo,
+    placa,
+    ano
+)
+VALUES
+(
+    9999,
+    'Fiat',
+    'Uno',
+    'ZZZ9Z99',
+    2022
+);
+
+
+-- Serviço com preço negativo
+-- A estrutura atual não possui CHECK para preço.
+-- O comando é mantido como teste.
+
+INSERT INTO servicos
+(
+    nome,
+    descricao,
+    preco
+)
+VALUES
+(
+    'Serviço inválido',
+    'Teste de preço negativo',
+    -500.00
+);
+
+
+-- Exclusão de cliente
+-- Este comando pode apresentar erro caso o cliente
+-- possua veículos ou ordens relacionadas.
+
+DELETE FROM clientes
+WHERE id_cliente = 1;
+
+
+-- Ordem com veículo inexistente
+-- Este comando deve apresentar erro de FOREIGN KEY
+
+INSERT INTO ordens_servico
+(
+    id_cliente,
+    id_veiculo,
+    id_mecanico,
+    status
+)
+VALUES
+(
+    9999,
+    9999,
+    1,
+    'ABERTA'
+);
+
+
+-- =========================================================
+-- CONSULTAS FINAIS
+-- =========================================================
+
+SELECT *
+FROM clientes;
+
+
+SELECT *
+FROM veiculos;
+
+
+SELECT *
+FROM mecanicos;
+
+
+SELECT *
+FROM servicos;
+
+
+SELECT *
+FROM ordens_servico;
+
+
+SELECT *
+FROM itens_servico;
+
+
+SELECT *
+FROM historico;
+>>>>>>> 61479939a836d72350c2c5917868083c873bec77
