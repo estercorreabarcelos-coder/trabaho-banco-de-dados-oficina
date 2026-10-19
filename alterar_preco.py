@@ -1,6 +1,6 @@
 from conexao import conectar 
 
-def alterar_preço():
+def alterar_preco():
     id_serviço = input("Digite o ID do serviço: ")
     novo_preço = float(input("Novo preço:").replace(",","."))
 
