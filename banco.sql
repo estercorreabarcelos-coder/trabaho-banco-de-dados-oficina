@@ -4,9 +4,12 @@ CREATE DATABASE oficina_carros;
 
 USE oficina_carros;
 
+
 ALTER TABLE clientes
 MODIFY COLUMN data_cadastro DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP;
 
+USE oficina_carros;
+DESCRIBE clientes;
 
 SHOW TABLES;
 
@@ -16,6 +19,7 @@ SHOW TABLES;
 
 CREATE TABLE clientes (
     id_cliente INT AUTO_INCREMENT PRIMARY KEY,
+    telefone VARCHAR(20),
     nome VARCHAR(100) NOT NULL,
     cpf VARCHAR(11) NOT NULL UNIQUE,
     email VARCHAR(100) UNIQUE,
