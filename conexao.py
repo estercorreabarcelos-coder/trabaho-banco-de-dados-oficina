@@ -1,6 +1,4 @@
 import mysql.connector
-
-
 def conectar():
 
     banco = mysql.connector.connect(
