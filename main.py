@@ -1,25 +1,18 @@
+
 from cliente import (
-   cadastrar_cliente,
-   listar_cliente,
-   atualizar_cliente,
-   excluir_cliente,
-   buscar_cliente
-)
-from veiculo import (
-   cadastrar_veiculo,
-   listar_veiculos,
-   buscar_veiculos_cliente,
-   atualizar_veiculo
-)
-from consultas_clientes_veiculos import consulta_clientes_veiculos
-from historico import (
-    registrar_alteracao,
-    listar_historico
+    cadastrar_cliente,
+    listar_clientes,
+    atualizar_cliente,
+    excluir_cliente,
+    buscar_cliente
 )
 
-from relatorios import *
-from consultas_valoresgastos import *
-from relatorio_mec import *
+from veiculo import (
+    cadastrar_veiculo,
+    listar_veiculos,
+    buscar_veiculos_cliente,
+    atualizar_veiculo
+)
 
 while True:
    print("\n==============================")
@@ -34,14 +27,6 @@ while True:
    print("7 - Listar veículos")
    print("8 - Buscar veículos de um cliente")
    print("9 - Atualizar veículo")
-   print("10 - Consultar clientes e veículos")
-   print("11 - Valores gastos")
-   print("12 - Histórico de alterações")
-   print("13 - Listar histórico de alterações")
-   print("14 - Histórico de preços")
-   print("15 - Histórico de status")
-   print("16 - Relatório de mecânicos")
-   print("17 - Relatório de ordens")
    print("0 - Sair")
    opcao = input("\nEscolha uma opção: ")
    if opcao == "1":
@@ -61,19 +46,7 @@ while True:
    elif opcao == "8":
        buscar_veiculos_cliente()
    elif opcao == "9":
-       atualizar_veiculo()      
-   elif opcao == "10":
-       consulta_clientes_veiculos()
-   elif opcao == "11":
-       valores_gastos()
-   elif opcao == "12":
-       registrar_alteracao()
-   elif opcao == "13":
-       listar_historico()
-   elif opcao == "14":
-       relatorio_mecanicos()
-   elif opcao == "15":
-         relatorio_ordens()
+       atualizar_veiculo()
    elif opcao == "0":
        print("Programa encerrado!")
        break

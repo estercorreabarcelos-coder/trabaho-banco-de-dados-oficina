@@ -1,7 +1,13 @@
 import mysql.connector
-
-
 def conectar():
+
+    banco = mysql.connector.connect(
+        host="localhost",
+        user="root",
+        password="SUA_SENHA",
+        database="oficina"
+    )
+
     try:
         conexao = mysql.connector.connect(
             host="localhost",
@@ -9,6 +15,7 @@ def conectar():
             password="Senac2026",
             database="oficina_carros"
         )
+
 
         return conexao
 

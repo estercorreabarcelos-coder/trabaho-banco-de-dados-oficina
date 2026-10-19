@@ -22,17 +22,53 @@ def cadastrar_veiculo():
    print("Veículo cadastrado com sucesso!")
    cursor.close()
    banco.close()
-
+   
 def listar_veiculos():
-   print("\n----- LISTA DE VEÍCULOS -----")
-   banco = conectar()
-   cursor = banco.cursor()
-   cursor.execute("SELECT * FROM veiculos")
-   veiculos = cursor.fetchall()
-   for veiculo in veiculos:
-       print(veiculo)
-   cursor.close()
-   banco.close()
+    print("\n----- LISTA DE VEÍCULOS -----")
+
+    banco = conectar()
+    cursor = banco.cursor()
+
+    cursor.execute("SELECT * FROM veiculos")
+
+    veiculos = cursor.fetchall()
+
+    for veiculo in veiculos:
+        print(veiculo)
+
+    cursor.close()
+    banco.close()
+
+def buscar_veiculos_clientes():
+    print("\n===== VEÍCULO DO CLIENTE =====")
+
+    id_cliente = input("Digite o ID do cliente: ")
+
+    banco = conectar()
+    cursor = banco.cursor()
+
+    sql = """
+    SELECT
+        clientes.nome,
+        veiculos.placa,
+        veiculos.marca,
+        veiculos.modelo,
+        veiculos.ano
+    FROM clientes
+    INNER JOIN veiculos
+        ON clientes.id_cliente = veiculos.id_cliente
+    WHERE clientes.id_cliente = %s
+    """
+
+    cursor.execute(sql, (id_cliente,))
+
+    veiculos = cursor.fetchall()
+
+    for veiculo in veiculos:
+        print(veiculo)
+
+    cursor.close()
+    banco.close()
 
 def buscar_veiculos_cliente():
    print("\n----- VEÍCULOS DO CLIENTE -----")

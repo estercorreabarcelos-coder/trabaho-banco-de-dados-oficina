@@ -24,9 +24,15 @@ def alterar_preço():
         if cursor.rowcount > 0:
             print("Preço atualizado com sucesso!")
         else:
-            print("Serviço não encontrado")
+            print ("Serviço não encotrado")
+
+    except Exception as erro:
+        print("Erro:", erro)
+
+        print("Serviço não encontrado")
     except Exception as erro:
         print("Erro", erro)
+
     finally:
         cursor.close()
         conexao.close()
