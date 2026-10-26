@@ -29,8 +29,7 @@ from listra_servicos import listar_servicos
 from alterar_preco import alterar_preco
 
 from consulta_servico import (
-    consultar_servicos_por_nome,
-    consultar_servicos_por_preco
+    consultar_servicos
 )
 
 
@@ -98,9 +97,7 @@ while True:
        elif opcao == "14":
         alterar_preco()
        elif opcao == "15":
-        consultar_servicos_por_nome()
-       elif opcao == "16":
-        consultar_servicos_por_preco()
+        consultar_servicos()
        elif opcao == "0":
         print("Sistema encerrado!")
         break

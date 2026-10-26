@@ -29,7 +29,7 @@ def cadastrar_cliente():
         banco.close()
 
 def listar_cliente():
-    print("\n------ LSITA DE CLIENTES------")
+    print("\n------ LISTA DE CLIENTES------")
 
 
     banco = conectar()

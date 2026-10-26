@@ -4,8 +4,8 @@ def conectar():
     banco = mysql.connector.connect(
         host="localhost",
         user="root",
-        password="SUA_SENHA",
-        database="oficina"
+        password="Senac2026",
+        database="oficina_carros"
     )
 
     try:
