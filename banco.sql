@@ -1,30 +1,3 @@
-<<<<<<< HEAD
-CREATE DATABASE oficina;
-USE oficina;
-
-
--- 1. TABELAS
-CREATE TABLE clientes (
-    id_cliente INT AUTO_INCREMENT PRIMARY KEY,
-    nome VARCHAR(100) NOT NULL,
-    cpf VARCHAR(11) NOT NULL UNIQUE,
-    email VARCHAR(100) UNIQUE,
-    data_cadastro DATE NOT NULL
-);
-
-CREATE TABLE veiculos (
-    id_veiculo INT AUTO_INCREMENT PRIMARY KEY,
-    id_cliente INT NOT NULL,
-    placa VARCHAR(7) NOT NULL UNIQUE,
-    marca VARCHAR(50) NOT NULL,
-    modelo VARCHAR(50) NOT NULL,
-    ano INT NOT NULL,
-
-    FOREIGN KEY (id_cliente)
-        REFERENCES clientes(id_cliente)
-);
-
-=======
 DROP DATABASE IF EXISTS oficina_carros;
 
 CREATE DATABASE oficina_carros;
@@ -69,7 +42,6 @@ CREATE TABLE veiculos (
 );
 
 
->>>>>>> 61479939a836d72350c2c5917868083c873bec77
 CREATE TABLE mecanicos (
     id_mecanico INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
@@ -79,10 +51,7 @@ CREATE TABLE mecanicos (
     status VARCHAR(20) NOT NULL DEFAULT 'ATIVO'
 );
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 61479939a836d72350c2c5917868083c873bec77
 CREATE TABLE servicos (
     id_servico INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100) NOT NULL UNIQUE,
@@ -92,10 +61,7 @@ CREATE TABLE servicos (
     status VARCHAR(20) NOT NULL DEFAULT 'ATIVO'
 );
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 61479939a836d72350c2c5917868083c873bec77
 CREATE TABLE ordens_servico (
     id_ordem INT AUTO_INCREMENT PRIMARY KEY,
     id_cliente INT NOT NULL,
@@ -106,13 +72,6 @@ CREATE TABLE ordens_servico (
     status VARCHAR(30) NOT NULL DEFAULT 'ABERTA',
     observacoes VARCHAR(255),
 
-<<<<<<< HEAD
-    FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente),
-    FOREIGN KEY (id_veiculo) REFERENCES veiculos(id_veiculo),
-    FOREIGN KEY (id_mecanico) REFERENCES mecanicos(id_mecanico)
-);
-
-=======
     FOREIGN KEY (id_cliente)
         REFERENCES clientes(id_cliente),
 
@@ -124,7 +83,6 @@ CREATE TABLE ordens_servico (
 );
 
 
->>>>>>> 61479939a836d72350c2c5917868083c873bec77
 CREATE TABLE itens_servico (
     id_item INT AUTO_INCREMENT PRIMARY KEY,
     id_ordem INT NOT NULL,
@@ -132,12 +90,6 @@ CREATE TABLE itens_servico (
     quantidade INT NOT NULL DEFAULT 1,
     preco_unitario DECIMAL(10,2) NOT NULL,
 
-<<<<<<< HEAD
-    FOREIGN KEY (id_ordem) REFERENCES ordens_servico(id_ordem),
-    FOREIGN KEY (id_servico) REFERENCES servicos(id_servico)
-);
-
-=======
     FOREIGN KEY (id_ordem)
         REFERENCES ordens_servico(id_ordem),
 
@@ -146,7 +98,6 @@ CREATE TABLE itens_servico (
 );
 
 
->>>>>>> 61479939a836d72350c2c5917868083c873bec77
 CREATE TABLE historico (
     id_historico INT AUTO_INCREMENT PRIMARY KEY,
     id_ordem INT NOT NULL,
@@ -154,14 +105,6 @@ CREATE TABLE historico (
     descricao VARCHAR(255) NOT NULL,
     data_alteracao DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
-<<<<<<< HEAD
-    FOREIGN KEY (id_ordem) REFERENCES ordens_servico(id_ordem)
-);
-
-
--- 2. DADOS
-INSERT INTO clientes (nome, cpf, email, data_cadastro) VALUES
-=======
     FOREIGN KEY (id_ordem)
         REFERENCES ordens_servico(id_ordem)
 );
@@ -198,7 +141,6 @@ CREATE TABLE historico_status_ordem (
 INSERT INTO clientes
 (nome, cpf, email, data_cadastro)
 VALUES
->>>>>>> 61479939a836d72350c2c5917868083c873bec77
 ('João da Silva','11111111111','joao@email.com','2026-01-10'),
 ('Maria Souza','22222222222','maria@email.com','2026-01-12'),
 ('Carlos Oliveira','33333333333','carlos@email.com','2026-01-15'),
@@ -211,13 +153,9 @@ VALUES
 ('Juliana Lima','12345678900','juliana@email.com','2026-02-03');
 
 
-<<<<<<< HEAD
-INSERT INTO veiculos (id_cliente, placa, marca, modelo, ano) VALUES
-=======
 INSERT INTO veiculos
 (id_cliente, placa, marca, modelo, ano)
 VALUES
->>>>>>> 61479939a836d72350c2c5917868083c873bec77
 (1,'ABC1D23','Volkswagen','Gol',2018),
 (2,'DEF2E34','Chevrolet','Onix',2020),
 (3,'GHI3F45','Fiat','Uno',2017),
@@ -233,12 +171,8 @@ VALUES
 
 
 INSERT INTO mecanicos
-<<<<<<< HEAD
-(nome, cpf, especialidade, data_contratacao) VALUES
-=======
 (nome, cpf, especialidade, data_contratacao)
 VALUES
->>>>>>> 61479939a836d72350c2c5917868083c873bec77
 ('Carlos Mendes','11111111111','Motor','2023-02-10'),
 ('Joao Silva','22222222222','Freios','2022-08-15'),
 ('Marcos Oliveira','33333333333','Suspensao','2024-01-20'),
@@ -247,12 +181,8 @@ VALUES
 
 
 INSERT INTO servicos
-<<<<<<< HEAD
-(nome, descricao, preco, tempo_estimado) VALUES
-=======
 (nome, descricao, preco, tempo_estimado)
 VALUES
->>>>>>> 61479939a836d72350c2c5917868083c873bec77
 ('Troca de oleo','Troca do oleo do motor',150.00,60),
 ('Troca de pastilhas','Troca das pastilhas de freio',280.00,90),
 ('Alinhamento','Alinhamento das rodas',120.00,60),
@@ -266,12 +196,8 @@ VALUES
 
 
 INSERT INTO ordens_servico
-<<<<<<< HEAD
-(id_cliente,id_veiculo,id_mecanico,data_abertura,status,observacoes) VALUES
-=======
 (id_cliente, id_veiculo, id_mecanico, data_abertura, status, observacoes)
 VALUES
->>>>>>> 61479939a836d72350c2c5917868083c873bec77
 (1,1,1,'2026-03-01 08:00:00','ABERTA','Revisao geral'),
 (2,2,2,'2026-03-02 09:00:00','EM_ANDAMENTO','Problema no freio'),
 (3,3,3,'2026-03-03 10:00:00','CONCLUIDA','Problema na suspensao'),
@@ -285,12 +211,8 @@ VALUES
 
 
 INSERT INTO itens_servico
-<<<<<<< HEAD
-(id_ordem,id_servico,quantidade,preco_unitario) VALUES
-=======
 (id_ordem, id_servico, quantidade, preco_unitario)
 VALUES
->>>>>>> 61479939a836d72350c2c5917868083c873bec77
 (1,1,1,150.00),
 (1,3,1,120.00),
 (2,2,1,280.00),
@@ -306,59 +228,6 @@ VALUES
 (10,10,1,700.00);
 
 
-<<<<<<< HEAD
-
--- 3. CONSULTAS
--- WHERE
-SELECT * FROM servicos
-WHERE preco > 500;
-
--- ORDER BY + LIMIT
-SELECT * FROM servicos
-ORDER BY preco DESC
-LIMIT 5;
-
--- LIKE
-SELECT * FROM clientes
-WHERE nome LIKE '%Silva%';
-
--- BETWEEN
-SELECT * FROM servicos
-WHERE preco BETWEEN 100 AND 500;
-
--- IN
-SELECT * FROM ordens_servico
-WHERE status IN ('ABERTA','EM_ANDAMENTO');
-
--- AND
-SELECT * FROM servicos
-WHERE preco > 200 AND status = 'ATIVO';
-
--- OR
-SELECT * FROM ordens_servico
-WHERE status = 'ABERTA' OR status = 'EM_ANDAMENTO';
-
-
--- 4. FUNÇÕES DE AGREGAÇÃO
-
-SELECT COUNT(*) AS total_clientes FROM clientes;
-
-SELECT SUM(preco) AS soma_servicos FROM servicos;
-
-SELECT AVG(preco) AS preco_medio FROM servicos;
-
-SELECT MIN(preco) AS menor_preco FROM servicos;
-
-SELECT MAX(preco) AS maior_preco FROM servicos;
-
-
--- 5. GROUP BY + HAVING
-SELECT status, COUNT(*) AS quantidade
-FROM ordens_servico
-GROUP BY status;
-
-SELECT status, COUNT(*) AS quantidade
-=======
 -- =========================================================
 -- 3. CONSULTAS
 -- =========================================================
@@ -453,20 +322,14 @@ GROUP BY status;
 SELECT
     status,
     COUNT(*) AS quantidade
->>>>>>> 61479939a836d72350c2c5917868083c873bec77
 FROM ordens_servico
 GROUP BY status
 HAVING COUNT(*) > 2;
 
 
-<<<<<<< HEAD
--- 6. JOINS
-
-=======
 -- =========================================================
 -- 6. JOINS
 -- =========================================================
->>>>>>> 61479939a836d72350c2c5917868083c873bec77
 
 SELECT
     c.nome AS cliente,
@@ -474,11 +337,7 @@ SELECT
     v.placa
 FROM clientes c
 INNER JOIN veiculos v
-<<<<<<< HEAD
-ON c.id_cliente = v.id_cliente;
-=======
     ON c.id_cliente = v.id_cliente;
->>>>>>> 61479939a836d72350c2c5917868083c873bec77
 
 
 SELECT
@@ -488,18 +347,12 @@ SELECT
     m.nome AS mecanico,
     os.status
 FROM ordens_servico os
-<<<<<<< HEAD
-INNER JOIN clientes c ON os.id_cliente = c.id_cliente
-INNER JOIN veiculos v ON os.id_veiculo = v.id_veiculo
-INNER JOIN mecanicos m ON os.id_mecanico = m.id_mecanico;
-=======
 INNER JOIN clientes c
     ON os.id_cliente = c.id_cliente
 INNER JOIN veiculos v
     ON os.id_veiculo = v.id_veiculo
 INNER JOIN mecanicos m
     ON os.id_mecanico = m.id_mecanico;
->>>>>>> 61479939a836d72350c2c5917868083c873bec77
 
 
 SELECT
@@ -509,15 +362,6 @@ SELECT
     i.preco_unitario,
     i.quantidade * i.preco_unitario AS total
 FROM itens_servico i
-<<<<<<< HEAD
-INNER JOIN ordens_servico os ON i.id_ordem = os.id_ordem
-INNER JOIN servicos s ON i.id_servico = s.id_servico;
-
-
--- 7. SUBCONSULTAS
--- Serviços acima da média
-SELECT nome, preco
-=======
 INNER JOIN ordens_servico os
     ON i.id_ordem = os.id_ordem
 INNER JOIN servicos s
@@ -606,40 +450,29 @@ ORDER BY quantidade_veiculos DESC;
 SELECT
     nome,
     preco
->>>>>>> 61479939a836d72350c2c5917868083c873bec77
 FROM servicos
 WHERE preco > (
     SELECT AVG(preco)
     FROM servicos
 );
 
-<<<<<<< HEAD
--- Mecânicos que possuem ordens
-SELECT nome
-=======
 
 -- Mecânicos que possuem ordens
 
 SELECT
     nome
->>>>>>> 61479939a836d72350c2c5917868083c873bec77
 FROM mecanicos
 WHERE id_mecanico IN (
     SELECT id_mecanico
     FROM ordens_servico
 );
 
-<<<<<<< HEAD
--- Veículos que possuem ordens
-SELECT placa, modelo
-=======
 
 -- Veículos que possuem ordens
 
 SELECT
     placa,
     modelo
->>>>>>> 61479939a836d72350c2c5917868083c873bec77
 FROM veiculos
 WHERE id_veiculo IN (
     SELECT id_veiculo
@@ -647,12 +480,6 @@ WHERE id_veiculo IN (
 );
 
 
-<<<<<<< HEAD
--- 8. PROCEDURES
-
-DELIMITER $$
-
-=======
 -- =========================================================
 -- SUBCONSULTAS ADICIONAIS
 -- =========================================================
@@ -683,19 +510,12 @@ WHERE id_cliente IN (
 DELIMITER $$
 
 
->>>>>>> 61479939a836d72350c2c5917868083c873bec77
 CREATE PROCEDURE cadastrar_cliente(
     IN p_nome VARCHAR(100),
     IN p_cpf VARCHAR(11),
     IN p_email VARCHAR(100)
 )
 BEGIN
-<<<<<<< HEAD
-    INSERT INTO clientes
-    (nome,cpf,email,data_cadastro)
-    VALUES
-    (p_nome,p_cpf,p_email,CURDATE());
-=======
 
     INSERT INTO clientes
     (
@@ -712,7 +532,6 @@ BEGIN
         CURDATE()
     );
 
->>>>>>> 61479939a836d72350c2c5917868083c873bec77
 END $$
 
 
@@ -723,12 +542,6 @@ CREATE PROCEDURE cadastrar_servico(
     IN p_tempo INT
 )
 BEGIN
-<<<<<<< HEAD
-    INSERT INTO servicos
-    (nome,descricao,preco,tempo_estimado)
-    VALUES
-    (p_nome,p_descricao,p_preco,p_tempo);
-=======
 
     INSERT INTO servicos
     (
@@ -745,7 +558,6 @@ BEGIN
         p_tempo
     );
 
->>>>>>> 61479939a836d72350c2c5917868083c873bec77
 END $$
 
 
@@ -754,26 +566,17 @@ CREATE PROCEDURE alterar_preco(
     IN p_preco DECIMAL(10,2)
 )
 BEGIN
-<<<<<<< HEAD
-    UPDATE servicos
-    SET preco = p_preco
-    WHERE id_servico = p_id;
-=======
 
     UPDATE servicos
     SET preco = p_preco
     WHERE id_servico = p_id;
 
->>>>>>> 61479939a836d72350c2c5917868083c873bec77
 END $$
 
 
 CREATE PROCEDURE listar_ordens()
 BEGIN
-<<<<<<< HEAD
-=======
 
->>>>>>> 61479939a836d72350c2c5917868083c873bec77
     SELECT
         os.id_ordem,
         c.nome AS cliente,
@@ -781,19 +584,6 @@ BEGIN
         m.nome AS mecanico,
         os.status
     FROM ordens_servico os
-<<<<<<< HEAD
-    INNER JOIN clientes c ON os.id_cliente = c.id_cliente
-    INNER JOIN veiculos v ON os.id_veiculo = v.id_veiculo
-    INNER JOIN mecanicos m ON os.id_mecanico = m.id_mecanico;
-END $$
-
-DELIMITER ;
-
-
--- 9. TRIGGERS
-DELIMITER $$
-
-=======
     INNER JOIN clientes c
         ON os.id_cliente = c.id_cliente
     INNER JOIN veiculos v
@@ -865,17 +655,10 @@ DELIMITER ;
 DELIMITER $$
 
 
->>>>>>> 61479939a836d72350c2c5917868083c873bec77
 CREATE TRIGGER registrar_nova_ordem
 AFTER INSERT ON ordens_servico
 FOR EACH ROW
 BEGIN
-<<<<<<< HEAD
-    INSERT INTO historico
-    (id_ordem,acao,descricao)
-    VALUES
-    (NEW.id_ordem,'CRIACAO','Nova ordem de servico criada');
-=======
 
     INSERT INTO historico
     (
@@ -890,7 +673,6 @@ BEGIN
         'Nova ordem de servico criada'
     );
 
->>>>>>> 61479939a836d72350c2c5917868083c873bec77
 END $$
 
 
@@ -898,11 +680,6 @@ CREATE TRIGGER registrar_status
 AFTER UPDATE ON ordens_servico
 FOR EACH ROW
 BEGIN
-<<<<<<< HEAD
-    IF OLD.status <> NEW.status THEN
-        INSERT INTO historico
-        (id_ordem,acao,descricao)
-=======
 
     IF OLD.status <> NEW.status THEN
 
@@ -912,17 +689,10 @@ BEGIN
             acao,
             descricao
         )
->>>>>>> 61479939a836d72350c2c5917868083c873bec77
         VALUES
         (
             NEW.id_ordem,
             'ALTERACAO',
-<<<<<<< HEAD
-            CONCAT('Status alterado de ',
-                   OLD.status,' para ',NEW.status)
-        );
-    END IF;
-=======
             CONCAT(
                 'Status alterado de ',
                 OLD.status,
@@ -933,7 +703,6 @@ BEGIN
 
     END IF;
 
->>>>>>> 61479939a836d72350c2c5917868083c873bec77
 END $$
 
 
@@ -941,19 +710,6 @@ CREATE TRIGGER registrar_servico
 AFTER INSERT ON itens_servico
 FOR EACH ROW
 BEGIN
-<<<<<<< HEAD
-    INSERT INTO historico
-    (id_ordem,acao,descricao)
-    VALUES
-    (NEW.id_ordem,'SERVICO','Servico adicionado a ordem');
-END $$
-
-DELIMITER ;
-
-
-
--- 10. TESTES
-=======
 
     INSERT INTO historico
     (
@@ -1007,17 +763,13 @@ DELIMITER ;
 -- 10. TESTES
 -- =========================================================
 
->>>>>>> 61479939a836d72350c2c5917868083c873bec77
 CALL cadastrar_cliente(
     'Cliente Teste',
     '98765432100',
     'teste@email.com'
 );
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 61479939a836d72350c2c5917868083c873bec77
 CALL cadastrar_servico(
     'Troca de filtro',
     'Troca do filtro de ar',
@@ -1025,33 +777,19 @@ CALL cadastrar_servico(
     30
 );
 
-<<<<<<< HEAD
-CALL alterar_preco(1,160.00);
-
-=======
 
 CALL alterar_preco(1,160.00);
 
 
->>>>>>> 61479939a836d72350c2c5917868083c873bec77
 CALL listar_ordens();
 
 
 -- Teste do trigger
-<<<<<<< HEAD
-=======
 
->>>>>>> 61479939a836d72350c2c5917868083c873bec77
 UPDATE ordens_servico
 SET status = 'CONCLUIDA'
 WHERE id_ordem = 1;
 
-<<<<<<< HEAD
-SELECT * FROM historico;
-
-
--- Valor total de cada ordem
-=======
 
 SELECT *
 FROM historico;
@@ -1072,7 +810,6 @@ FROM historico_precos;
 -- VALOR TOTAL DE CADA ORDEM
 -- =========================================================
 
->>>>>>> 61479939a836d72350c2c5917868083c873bec77
 SELECT
     os.id_ordem,
     c.nome AS cliente,
@@ -1083,9 +820,6 @@ INNER JOIN clientes c
 INNER JOIN itens_servico i
     ON os.id_ordem = i.id_ordem
 GROUP BY os.id_ordem, c.nome
-<<<<<<< HEAD
-ORDER BY valor_total DESC;
-=======
 ORDER BY valor_total DESC;
 
 
@@ -1205,4 +939,3 @@ FROM itens_servico;
 
 SELECT *
 FROM historico;
->>>>>>> 61479939a836d72350c2c5917868083c873bec77
